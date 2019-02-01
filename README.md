@@ -31,6 +31,10 @@ Your app is ready to be deployed!
 
 See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
 
+### `npm run lint`
+
+Run eslint and report any errors/warnings.
+
 ## Tasks
 
 ### Task 1: Load articles from an API
