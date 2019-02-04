@@ -1,4 +1,4 @@
-# Browse Articles - Sample React Application
+# Article Browser - Sample React Application
 
 **NOTE:** *This is a sample application used for training and interview tasks. It is intentionally anemic but feel free to use it if you find it useful.*
 
