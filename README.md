@@ -69,18 +69,54 @@ Example of a single article:
 Add functionality to fetch the articles from this API on page load and display each article on the page.
 
 
-### Task 2: Filtering by journal
+### Task 2: Add tests
 
-Now that we have articles dynamically displaying we'd like to let the user filter by journal. Provide a component that allows the user to select one or more journals ("Journal A", "Journal B", etc.). The `journal` parameter on the `/articles` API endpoint above allows filtering by journal using the journal ID. When the journals are selected update the call to the API to include them as parameters, for example:
+ Add a unit test for the Article component created above using [Enzyme](https://airbnb.io/enzyme/). The file `./src/components/Article.test.jsx` contains stubbed out test expections which should be made to pass along with any other test coverage you feel is appropriate.
 
-Return only articles in "Journal A":
+
+### Task 3: Add filtering by journal
+
+Now that we have articles dynamically displaying we'd like to let the user filter by journal. Provide a component that allows the user to select one or more journals ("Journal A", "Journal B", etc.). The `journal` parameter on the `/articles` API endpoint above allows filtering by journal using the journal ID. When the journals are selected update the call to the API to include them as parameters.
+
+**Example:** Return only articles in "Journal A":
 
 ```
 https://fake-article-api.now.sh/articles?journal=A
 ```
 
-Return only articles in "Journal A" and "Journal B":
+**Example:** Return only articles in "Journal A" and "Journal B":
 
 ```
 https://fake-article-api.now.sh/articles?journal=A&journal=B
 ```
+
+### Task 4: Add search functionality
+
+Add a search text box to the header that when submitted looks returns only the articles that match the text entered. The text may appear in the title, abstract, or author names. If the user enters multiple terms only articles that include all terms should be returned but those terms may match across fields. For example, given the articles:
+
+```json
+[
+  { 
+    "id": "4673a875-8caa-4675-9f11-832204cf9c32",
+    "title": "Distinctio deleniti dolorem",
+    "authors": [
+      "Virgil Raynor",
+      "Carmella Connelly",
+      "Aniya Miller"
+    ]
+  }
+  {
+    "id": "a7810fce-3544-4306-806d-5a95b1aabbe2",
+    "title": "Distinctio maiores odio",
+    "authors": [
+      "Alana Schuppe",
+      "Joan Baumbach",
+      "Myriam Kris"
+    ]
+  }
+}
+```
+
+If the user enters the search term "distinctio" both articles should be returned since this term matches their titles. If the user enters the search terms "distinctio raynor" only the first article should be returned since it is the only one that matches both terms ("distinctio" in the title, and "raynor" in the authors).
+
+No search API endpoint is provided so the search functionality will need to operate on the set of articles loaded from the API at the time of page load (all search functionality will be client side). 

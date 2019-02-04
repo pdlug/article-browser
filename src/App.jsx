@@ -11,7 +11,7 @@ class App extends Component {
       <>
         <Header />
 
-        <div className="p-8 bg-whitesmoke">
+        <div className="p-8 bg-whitesmoke min-h-screen">
           <Article />
           <Article />
           <Article />
