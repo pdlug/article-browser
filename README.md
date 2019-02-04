@@ -114,7 +114,7 @@ Add a search text box to the header that when submitted looks returns only the a
       "Myriam Kris"
     ]
   }
-}
+]
 ```
 
 If the user enters the search term "distinctio" both articles should be returned since this term matches their titles. If the user enters the search terms "distinctio raynor" only the first article should be returned since it is the only one that matches both terms ("distinctio" in the title, and "raynor" in the authors).
