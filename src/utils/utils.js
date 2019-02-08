@@ -10,3 +10,16 @@ export const fetchArticles = (url) => {
       return err
     })
 }
+export const buildUrl = async (params = []) => {
+  const baseUrl = "https://fake-article-api.now.sh/articles";
+  let url;
+  if (params.length === 0) {
+    url = baseUrl;
+  } else {
+    const length = params.length
+    url = await params.reduce((acc, curVal, index) => {
+      return index === length - 1 ? `${acc}journal=${curVal}` : `${acc}journal=${curVal}&`
+    }, `${baseUrl}?`);
+  }
+  return url;
+};

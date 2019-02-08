@@ -4,9 +4,8 @@ import "./app.css";
 import Header from "./components/layout/Header";
 import Article from "./components/Article";
 
-import { fetchArticles } from "./utils/utils";
+import { fetchArticles, buildUrl } from "./utils/utils";
 
-const API_URL = "https://fake-article-api.now.sh/articles";
 
 const sampleArticles = [
   {
@@ -49,7 +48,8 @@ class App extends Component {
     };
   }
   async componentDidMount() {
-    const articles = await fetchArticles(API_URL);
+    const URL = await buildUrl()
+    const articles = await fetchArticles(URL);
     this.setState({
       ...this.state,
       articles
