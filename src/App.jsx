@@ -3,6 +3,7 @@ import "./app.css";
 
 import Header from "./components/layout/Header";
 import Article from "./components/Article";
+import UserInput from "./components/UserInput";
 
 import { fetchArticles, buildUrl } from "./utils/utils";
 
@@ -61,6 +62,7 @@ class App extends Component {
     return (
       <>
         <Header />
+        <UserInput />
         <div className="p-8 bg-whitesmoke min-h-screen">
           <ArticlesContainer articles={sampleArticles} />
         </div>
