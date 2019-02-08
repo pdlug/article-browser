@@ -1,5 +1,18 @@
 import React, { Component } from "react";
 
+const JournalChoice = (val) => {
+  return (
+    <span
+    key={`journal-${val}`}
+    className="px-2"
+  >{`Journal ${val}`}</span>
+  )
+}
+
+const JournalChoiceContainer = (choices) => {
+  return choices.map(JournalChoice)
+}
+
 class UserInput extends Component {
   constructor(props) {
     super(props);
@@ -22,6 +35,11 @@ class UserInput extends Component {
   }
 
   render() {
+    const { values } = this.state;
+    const choices = values 
+      ? JournalChoiceContainer(values)
+      : null
+
     return (
       <div className="flex bg-grey justify-center">
         <div className="container flex w-full">
@@ -41,6 +59,7 @@ class UserInput extends Component {
                 <option value="D">Journal D</option>
               </select>
             </label>
+            <div className="py-4 uppercase bold">{choices}</div>
           </div>
 
         </div>
