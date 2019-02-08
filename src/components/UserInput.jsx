@@ -16,10 +16,11 @@ const JournalChoiceContainer = (choices) => {
 class UserInput extends Component {
   constructor(props) {
     super(props);
-    this.state = { values: [] };
+    this.state = { values: [], searchTerm: null };
 
     this.handleSelectChange = this.handleSelectChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
+    this.handleInputChange = this.handleInputChange.bind(this);
   }
 
   handleSelectChange(event) {
@@ -45,11 +46,17 @@ class UserInput extends Component {
     submitUserInput(values);
   }
 
+  handleInputChange(event) {
+    this.setState({
+      searchTerm: event.target.value,
+    });
+  }
+
   render() {
-    const { values } = this.state;
-    const choices = values 
+    const { values, searchTerm } = this.state;
+    const choices = values
       ? JournalChoiceContainer(values)
-      : null
+      : null;
 
     return (
       <div className="flex bg-grey justify-center">
@@ -71,14 +78,28 @@ class UserInput extends Component {
               </select>
             </label>
             <div className="py-4 uppercase bold">{choices}</div>
-            <div>
+          </div>
+          <div className="inline-block w-3/5">
+            <label>
+              <h4 className="py-5 uppercase">Search Term</h4>
+              <input
+                className="appearance-none block w-full bg-grey-lighter text-grey-darker border  rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white"
+                id="search-terms"
+                type="text"
+                placeholder="Enter your search term"
+                onChange={this.handleInputChange}
+                value={searchTerm}
+              />
+              <div>
                 <button
+                  type="submit"
                   onClick={this.handleSubmit}
                   className="bg-blue hover:bg-blue-dark text-white font-bold py-2 px-4 rounded"
                 >
                   Search
                 </button>
               </div>
+            </label>
           </div>
 
         </div>
