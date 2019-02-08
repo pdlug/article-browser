@@ -16,7 +16,7 @@ const JournalChoiceContainer = (choices) => {
 class UserInput extends Component {
   constructor(props) {
     super(props);
-    this.state = { values: [], searchTerm: null };
+    this.state = { values: [], searchTerm: "" };
 
     this.handleSelectChange = this.handleSelectChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
@@ -38,12 +38,13 @@ class UserInput extends Component {
 
   handleSubmit(event) {
     event.preventDefault();
-    const { values } = this.state;
+    const { values, searchTerm } = this.state;
     const { submitUserInput } = this.props;
     this.setState({
-      values: []
+      values: [],
+      searchTerm: ""
     });
-    submitUserInput(values);
+    submitUserInput(values, searchTerm);
   }
 
   handleInputChange(event) {
@@ -65,8 +66,8 @@ class UserInput extends Component {
             <label>
               <h4 className="uppercase py-5">Choose Journals</h4>
               <select
-                value={this.state.values}
-                multiple={true}
+                value={values}
+                multiple
                 size={4}
                 className="bg-grey-lighter border border-grey-lighter text-grey-darker my-3 py-2 px-4 pr-8 rounded leading-tight focus:outline-none focus:bg-white focus:border-grey"
                 onChange={this.handleSelectChange}
@@ -86,7 +87,6 @@ class UserInput extends Component {
                 className="appearance-none block w-full bg-grey-lighter text-grey-darker border  rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white"
                 id="search-terms"
                 type="text"
-                placeholder="Enter your search term"
                 onChange={this.handleInputChange}
                 value={searchTerm}
               />

@@ -24,3 +24,20 @@ export const buildUrl = async (params = []) => {
   return url;
 };
 
+export const searchArticle = (article, regx) => {
+  const {
+    title,
+    abstract
+  } = article
+  const searchAttributes = [title, abstract, ...article.authors]
+  return searchAttributes.some((attr) => {
+    return regx.test(attr)
+  })
+}
+
+export const filterArticles = (articles, searchTerm) => {
+  const searchRegex = new RegExp(searchTerm, "i");
+  return articles.filter(article => {
+    return searchArticle(article, searchRegex)
+  })
+}

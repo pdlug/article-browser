@@ -5,7 +5,7 @@ import Header from "./components/layout/Header";
 import Article from "./components/Article";
 import UserInput from "./components/UserInput";
 
-import { fetchArticles, buildUrl } from "./utils/utils";
+import { fetchArticles, buildUrl, filterArticles } from "./utils/utils";
 
 
 const sampleArticles = [
@@ -58,12 +58,16 @@ class App extends Component {
     });
   }
 
-  async submitUserInput(journalIds) {
+  async submitUserInput(journalIds, searchTerm) {
     const URL = await buildUrl(journalIds);
     const articles = await fetchArticles(URL);
+    const filtered = searchTerm
+      ? filterArticles(articles, searchTerm)
+      : articles;
+
     this.setState({
       ...this.state,
-      articles
+      articles: filtered
     });
   }
 
