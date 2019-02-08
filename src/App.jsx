@@ -2,8 +2,11 @@ import React, { Component } from "react";
 import "./app.css";
 
 import Header from "./components/layout/Header";
-
 import Article from "./components/Article";
+
+import { fetchArticles } from "./utils/utils";
+
+const API_URL = "https://fake-article-api.now.sh/articles";
 
 const sampleArticles = [
   {
@@ -39,6 +42,21 @@ const ArticlesContainer = ({ articles }) => {
 };
 
 class App extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      articles: []
+    };
+  }
+  async componentDidMount() {
+    const articles = await fetchArticles(API_URL);
+    this.setState({
+      ...this.state,
+      articles
+    });
+  }
+
+
   render() {
     return (
       <>
