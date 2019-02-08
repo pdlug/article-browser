@@ -9,7 +9,16 @@ class UserInput extends Component {
   }
 
   handleSelectChange(event) {
+    const value = event.target.value;
+    if (this.state.values.indexOf(value) >= 0) return;
+    let values =
+      this.state.values.length === 0
+        ? [event.target.value]
+        : [...this.state.values, event.target.value];
 
+    this.setState({
+      values
+    });
   }
 
   render() {
