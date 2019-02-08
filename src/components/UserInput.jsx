@@ -19,6 +19,7 @@ class UserInput extends Component {
     this.state = { values: [] };
 
     this.handleSelectChange = this.handleSelectChange.bind(this);
+    this.handleSubmit = this.handleSubmit.bind(this);
   }
 
   handleSelectChange(event) {
@@ -32,6 +33,16 @@ class UserInput extends Component {
     this.setState({
       values
     });
+  }
+
+  handleSubmit(event) {
+    event.preventDefault();
+    const { values } = this.state;
+    const { submitUserInput } = this.props;
+    this.setState({
+      values: []
+    });
+    submitUserInput(values);
   }
 
   render() {
@@ -60,6 +71,14 @@ class UserInput extends Component {
               </select>
             </label>
             <div className="py-4 uppercase bold">{choices}</div>
+            <div>
+                <button
+                  onClick={this.handleSubmit}
+                  className="bg-blue hover:bg-blue-dark text-white font-bold py-2 px-4 rounded"
+                >
+                  Search
+                </button>
+              </div>
           </div>
 
         </div>

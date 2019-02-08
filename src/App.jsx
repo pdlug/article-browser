@@ -45,8 +45,9 @@ class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      articles: []
+      articles: [],
     };
+    this.submitUserInput = this.submitUserInput.bind(this);
   }
   async componentDidMount() {
     const URL = await buildUrl()
@@ -57,14 +58,23 @@ class App extends Component {
     });
   }
 
+  async submitUserInput(journalIds) {
+    const URL = await buildUrl(journalIds);
+    const articles = await fetchArticles(URL);
+    this.setState({
+      ...this.state,
+      articles
+    });
+  }
 
   render() {
+    const { articles } = this.state
     return (
       <>
         <Header />
-        <UserInput />
+        <UserInput submitUserInput={this.submitUserInput} />
         <div className="p-8 bg-whitesmoke min-h-screen">
-          <ArticlesContainer articles={sampleArticles} />
+          <ArticlesContainer articles={articles} />
         </div>
       </>
     );
