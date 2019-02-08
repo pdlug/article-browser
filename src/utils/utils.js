@@ -7,14 +7,16 @@ export const fetchArticles = url => fetch(url)
     return err;
   });
 
-export const buildUrl = async (params = []) => {
+export const buildUrl = async (activeChoices = {}) => {
   const baseUrl = 'https://fake-article-api.now.sh/articles';
+  const empty = Object.keys(activeChoices).length === 0 && activeChoices.constructor === Object;
   let url;
-  if (params.length === 0) {
+  if (empty) {
     url = baseUrl;
   } else {
+    const params = Object.keys(activeChoices).filter(key => activeChoices[key])
     const length = params.length;
-    url = await params.reduce((acc, curVal, index) => (index === length - 1 ? `${acc}journal=${curVal}` : `${acc}journal=${curVal}&`), `${baseUrl}?`);
+    url = await params.reduce((acc, curVal, index) => (index === length - 1 ? `${acc}journal=${curVal.toUpperCase()}` : `${acc}journal=${curVal.toUpperCase()}&`), `${baseUrl}?`);
   }
   return url;
 };

@@ -29,8 +29,8 @@ class App extends Component {
     }));
   }
 
-  async submitUserInput(journalIds, searchTerm) {
-    const URL = await buildUrl(journalIds);
+  async submitUserInput(activeChoices, searchTerm) {
+    const URL = await buildUrl(activeChoices);
     const articles = await fetchArticles(URL);
     const filtered = searchTerm
       ? filterArticles(articles, searchTerm)
