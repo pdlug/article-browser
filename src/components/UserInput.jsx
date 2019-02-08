@@ -1,22 +1,21 @@
-import React, { Component } from "react";
+import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 
-const JournalChoice = (val) => {
-  return (
-    <span
+const JournalChoice = val => (
+  <span
     key={`journal-${val}`}
     className="px-2"
-  >{`Journal ${val}`}</span>
-  )
-}
+  >
+    {`Journal ${val}`}
+  </span>
+);
 
-const JournalChoiceContainer = (choices) => {
-  return choices.map(JournalChoice)
-}
+const JournalChoiceContainer = choices => choices.map(JournalChoice);
 
 class UserInput extends Component {
   constructor(props) {
     super(props);
-    this.state = { values: [], searchTerm: "" };
+    this.state = { values: [], searchTerm: '' };
 
     this.handleSelectChange = this.handleSelectChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
@@ -24,15 +23,15 @@ class UserInput extends Component {
   }
 
   handleSelectChange(event) {
+    const { values } = this.state;
     const value = event.target.value;
-    if (this.state.values.indexOf(value) >= 0) return;
-    let values =
-      this.state.values.length === 0
-        ? [event.target.value]
-        : [...this.state.values, event.target.value];
+    if (values.indexOf(value) >= 0) return;
+    const newValues = values.length === 0
+      ? [event.target.value]
+      : [...values, event.target.value];
 
     this.setState({
-      values
+      values: newValues,
     });
   }
 
@@ -42,7 +41,7 @@ class UserInput extends Component {
     const { submitUserInput } = this.props;
     this.setState({
       values: [],
-      searchTerm: ""
+      searchTerm: '',
     });
     submitUserInput(values, searchTerm);
   }
@@ -107,5 +106,9 @@ class UserInput extends Component {
     );
   }
 }
+
+UserInput.propTypes = {
+  submitUserInput: PropTypes.func.isRequired,
+};
 
 export default UserInput;
