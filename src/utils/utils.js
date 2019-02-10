@@ -40,6 +40,7 @@ export const searchArticleHighlightTerm = (article, regx) => {
 };
 
 export const filterArticles = (articles, searchTerm) => {
+  console.log('here')
   const searchRegex = new RegExp(searchTerm, 'i');
   return articles.filter(article => searchArticle(article, searchRegex));
 };
@@ -62,11 +63,14 @@ export const highlightSearchTerm = (filteredArticles, searchTerm) => {
 }
 
 export const concatChosenArticlesFromObj = (choices, articlesObj) => {
+  console.log('Obj')
   return choices.reduce((acc, choice) => {
     const currArrs = articlesObj[choice];
     return acc.length === 0 ? [...currArrs] : [...acc, ...currArrs];
   }, []);
 };
+
+export const generateKey = (author, index) => `${index}-${author.split(' ')[1]}-${new Date().getTime()}`;
 
 export const reduceActiveChoices = (activeChoices) => {
   return Object.keys(activeChoices).filter(choice => activeChoices[choice]);

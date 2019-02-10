@@ -1,16 +1,35 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types'
+
 import './app.css';
 
 import Header from './components/layout/Header';
-import Article from './components/Article';
-import UserInput from './components/UserInput';
+import ArticleContainer from './components/ArticleContainer/ArticleContainer';
+import UserInput from './components/layout/UserInput';
 
-import { fetchArticles, buildUrl, filterArticles, mapArticlesToObj, highlightSearchTerm, reduceActiveChoices, concatChosenArticlesFromObj } from './utils/utils';
+import {
+  fetchArticles,
+  buildUrl,
+  filterArticles,
+  mapArticlesToObj,
+  reduceActiveChoices,
+  concatChosenArticlesFromObj,
+} from './utils/utils';
 
-const ArticlesContainer = ({ articles }) => {
-  if (articles.length === 0) return <h2>Search returned no results</h2>
-  return articles.map(article => <Article key={article.id} article={article} />);
-};
+const ArticlesContainer = ({ articles, searchTerm, searchPresent }) => (
+  <div>
+    {articles.length === 0
+      ? <h2>Search returned no results</h2>
+      : articles.map(article => (
+        <ArticleContainer
+          key={article.id}
+          searchPresent={searchPresent}
+          searchTerm={searchTerm}
+          article={article}
+        />
+      ))}
+  </div>
+);
 
 class App extends Component {
   constructor(props) {
@@ -25,7 +44,9 @@ class App extends Component {
         D: [],
       },
       articlesCount: 0,
-      articleIds: ["A", "B", "C", "D"]
+      articleIds: ['A', 'B', 'C', 'D'],
+      searchTerm: '',
+      searchPresent: false,
     };
     this.submitUserInput = this.submitUserInput.bind(this);
   }
@@ -46,7 +67,7 @@ class App extends Component {
   async submitUserInput(activeChoices, searchTerm) {
     const { articles, articlesObj } = this.state;
     const choices = await reduceActiveChoices(activeChoices);
-    const currArticles = choices.length !== 0 
+    const currArticles = choices.length !== 0
       ? await concatChosenArticlesFromObj(choices, articlesObj)
       : articles;
     const filtered = typeof searchTerm === 'undefined' || searchTerm === ''
@@ -56,11 +77,15 @@ class App extends Component {
       ...state,
       articlesCount: filtered.length,
       chosenArticles: filtered,
+      searchTerm,
+      searchPresent: searchTerm !== '' || searchTerm !== 'undefined',
     }));
   }
 
   render() {
-    const { chosenArticles, articlesCount, articleIds } = this.state;
+    const {
+      chosenArticles, articlesCount, articleIds, searchTerm, searchPresent,
+    } = this.state;
     return (
       <>
         <Header />
@@ -71,12 +96,18 @@ class App extends Component {
               {`${articlesCount} articles`}
             </h3>
           </div>
-          <ArticlesContainer articles={chosenArticles} />
-
+          <ArticlesContainer articles={chosenArticles} searchPresent={searchPresent} searchTerm={searchTerm} />
         </div>
       </>
     );
   }
 }
+
+ArticlesContainer.propTypes = {
+  // eslint-disable-next-line react/forbid-prop-types
+  articles: PropTypes.array.isRequired,
+  searchTerm: PropTypes.string.isRequired,
+  searchPresent: PropTypes.bool.isRequired,
+};
 
 export default App;

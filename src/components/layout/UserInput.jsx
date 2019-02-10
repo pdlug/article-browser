@@ -1,23 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 
-const JournalChoice = val => (
-  <span
-    key={`journal-${val}`}
-    className="px-2"
-  >
-    {`Journal ${val}`}
-  </span>
-);
-
-const JournalButton = ({id, handleButtonClick}) => {
-  return (
-    <button id={id} type="submit" onClick={handleButtonClick} className="mx-2 bg-blue text-white font-bold py-2 px-4 rounded">{`Journal ${id}`}</button>
-  );
-};
-
-const JournalChoiceContainer = choices => choices.map(JournalChoice);
-
 class UserInput extends Component {
   constructor(props) {
     super(props);
@@ -46,46 +29,53 @@ class UserInput extends Component {
   }
 
   handleInputChange(event) {
-    const value = event.target.value;
+    const { target: { value } } = event;
     this.setState(state => ({
       ...state,
       searchTerm: value,
     }));
   }
 
-  async updateClickedButton(id, target) {
-    const { activeChoices, searchTerm } = this.state;
+  async updateClickedButton(target, id) {
+    // const { id } = target;
+    const { activeChoices } = this.state;
     const { submitUserInput } = this.props;
     if (activeChoices[id]) {
       target.classList.remove('bg-red');
       target.classList.add('bg-blue');
-      await this.setState(state => ({
-        ...state,
+      this.setState({
+        ...this.state,
         activeChoices: { ...activeChoices, [id]: false },
-      }));
-      submitUserInput(this.state.activeChoices, this.state.searchTerm)
+      }, () => {
+        submitUserInput(this.state.activeChoices, this.state.searchTerm);
+      });
     } else {
       target.classList.remove('bg-blue');
       target.classList.add('bg-red');
-      await this.setState(state => ({
-        ...state,
+      this.setState({
+        ...this.state,
         activeChoices: { ...activeChoices, [id]: true },
-      }));
-      submitUserInput(this.state.activeChoices, this.state.searchTerm)
+      }, (hello) => {
+        submitUserInput(this.state.activeChoices, this.state.searchTerm);
+      });
     }
   }
 
   handleButtonClick(event) {
+    // const { target } = event;
     const id = event.target.id;
-    const target = event.target;
-    this.updateClickedButton(id, target);
+    const target = event.target
+    this.updateClickedButton(target, id);
   }
 
   handleClearInput() {
-    this.setState(state => ({
-      ...state,
+    const { submitUserInput } = this.props;
+    this.setState({
+      ...this.state,
       searchTerm: '',
-    }));
+    }, () => {
+      submitUserInput(this.state.activeChoices, this.state.searchTerm);
+    });
   }
 
   render() {
@@ -96,9 +86,10 @@ class UserInput extends Component {
         <div className="container flex w-full">
           <div className="w-3/5 px-5">
             <h4 className="uppercase py-5">Choose Journals</h4>
-            {articleIds.map((id) => {
-              return <JournalButton id={id} handleButtonClick={this.handleButtonClick}/>
-            })}
+            {articleIds.map(id => (
+              <JournalButton id={id} handleButtonClick={this.handleButtonClick} />
+            ))
+            }
           </div>
           <div className="inline-block w-2/5">
             <form>
@@ -139,7 +130,27 @@ class UserInput extends Component {
 
 UserInput.propTypes = {
   submitUserInput: PropTypes.func.isRequired,
+  // eslint-disable-next-line react/forbid-prop-types
   articleIds: PropTypes.array.isRequired,
 };
 
+const JournalButton = ({ id, handleButtonClick }) => (
+  <button id={id} type="submit" onClick={handleButtonClick} className="mx-2 bg-blue text-white font-bold py-2 px-4 rounded">{`Journal ${id}`}</button>
+);
+
+JournalButton.propTypes = {
+  id: PropTypes.string.isRequired,
+  handleButtonClick: PropTypes.func.isRequired,
+};
+
 export default UserInput;
+
+// const JournalChoice = val => (
+//   <span
+//     key={`journal-${val}`}
+//     className="px-2"
+//   >
+//     {`Journal ${val}`}
+//   </span>
+// );
+// const JournalChoiceContainer = choices => choices.map(JournalChoice);
