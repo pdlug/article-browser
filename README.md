@@ -35,6 +35,15 @@ See the section about [deployment](https://facebook.github.io/create-react-app/d
 
 Run eslint and report any errors/warnings.
 
+### `npm run lint:fix`
+
+Fix any linting errors that can be automatically fixed.
+
+### `npm run format`
+
+(Re)format code using prettier
+
+
 ## Tasks
 
 ### Task 1: Load articles from an API
