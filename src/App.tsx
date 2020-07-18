@@ -4,16 +4,14 @@ import "./app.css";
 
 import Header from "./components/layout/Header";
 
-import Article from "./components/Article";
+import Articles from "./components/Articles";
 
-const App: React.FC = () => (
+const App = (): JSX.Element => (
   <>
-    <Header />
+    <Header>Article Browser</Header>
 
     <div className="p-8 bg-whitesmoke min-h-screen">
-      <Article />
-      <Article />
-      <Article />
+      <Articles />
     </div>
   </>
 );

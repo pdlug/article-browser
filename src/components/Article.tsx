@@ -1,6 +1,6 @@
 import React from "react";
 
-const JournalIcon: React.FC = () => (
+const JournalIcon = (): JSX.Element => (
   <svg
     className="fill-current text-gray-600 w-3 h-3 mr-2"
     xmlns="http://www.w3.org/2000/svg"
@@ -10,7 +10,7 @@ const JournalIcon: React.FC = () => (
   </svg>
 );
 
-const Article: React.FC = () => (
+const Article = (): JSX.Element => (
   <div className="mb-8 px-6 py-4 rounded shadow leading-normal bg-white">
     <p className="text-sm text-gray-500 flex items-center">
       <JournalIcon />

@@ -3,7 +3,7 @@ import { render } from "@testing-library/react";
 
 import Article from "./Article";
 
-const article = render(<Article/>);
+const article = render(<Article />);
 
 it("should display Article Title", () => {
   expect(false).toBe(true);
