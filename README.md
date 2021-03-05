@@ -78,10 +78,10 @@ Example of a single article:
 Add functionality to fetch the articles from this API on page load and display each article on the page.
 
 
-### Task 2: Add tests
+### Task 2: Add an article detail view
 
- Add a unit test for the Article component created above using [Enzyme](https://airbnb.io/enzyme/). The file `./src/components/Article.test.jsx` contains stubbed out test expections which should be made to pass along with any other test coverage you feel is appropriate.
-
+Clicking an article should display a more detailed view that includes the abstract, publication date, and other details in a more expansive format.
+ 
 
 ### Task 3: Add filtering by journal
 
@@ -129,3 +129,7 @@ Add a search text box to the header that when submitted looks returns only the a
 If the user enters the search term "distinctio" both articles should be returned since this term matches their titles. If the user enters the search terms "distinctio raynor" only the first article should be returned since it is the only one that matches both terms ("distinctio" in the title, and "raynor" in the authors).
 
 No search API endpoint is provided so the search functionality will need to operate on the set of articles loaded from the API at the time of page load (all search functionality will be client side). 
+
+### Task 5: Add tests
+
+ Add a unit test for the Article component created above using [Enzyme](https://airbnb.io/enzyme/). The file `./src/components/Article.test.jsx` contains stubbed out test expections which should be made to pass along with any other test coverage you feel is appropriate.

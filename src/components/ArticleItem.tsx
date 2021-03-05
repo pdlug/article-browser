@@ -12,15 +12,14 @@ const JournalIcon = (): JSX.Element => (
   </svg>
 );
 
-interface ArticleProps
-  extends Pick<
-    Article,
-    "authors" | "title" | "journal" | "abstract" | "publishedOn"
-  > {
+type ArticleProps = Pick<
+  Article,
+  "authors" | "title" | "journal" | "abstract" | "publishedOn"
+> & {
   highlighted?: boolean;
   bookmarked: boolean;
   userLoggedIn: boolean;
-}
+};
 
 const AuthorList = ({ authors }: Pick<Article, "authors">): JSX.Element => (
   <>

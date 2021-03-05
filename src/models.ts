@@ -1,9 +1,9 @@
-export interface Journal {
+export type Journal = {
   id: string;
   name: string;
 }
 
-export interface Article {
+export type Article = {
   id: string;
   publishedOn: string;
   title: string;
