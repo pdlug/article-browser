@@ -5,8 +5,7 @@
   "dependencies": {
     "axios": "^0.26.0",
     "react": "^17.0.1",
-    "react-dom": "^17.0.1",
-    "react-scripts": "5.0.0"
+    "react-dom": "^17.0.1"
   },
   "scripts": {
     "lint": "eslint \"src/**/*.ts*\" && prettier \"src/**/*.ts*\" --list-different",
@@ -14,13 +13,9 @@
     "format": "prettier \"src/**/*.ts*\" --write",
     "build:css": "postcss src/styles/app.css -o src/app.css",
     "watch:css": "postcss src/styles/app.css -o src/app.css -w",
-    "start": "npm run watch:css & react-scripts start",
-    "build": "npm run build:css && react-scripts build",
-    "test": "react-scripts test",
-    "eject": "react-scripts eject"
-  },
-  "eslintConfig": {
-    "extends": "react-app"
+    "start": "vite",
+    "build": "tsc && vite build",
+    "serve": "vite preview"
   },
   "browserslist": [
     ">0.2%",
@@ -34,7 +29,8 @@
     "@types/react": "^17.0.2",
     "@types/react-dom": "^17.0.1",
     "@typescript-eslint/eslint-plugin-tslint": "^5.12.0",
-    "autoprefixer": "^10.2.5",
+    "@vitejs/plugin-react": "^1.0.7",
+    "autoprefixer": "^10.4.2",
     "eslint": "^8.9.0",
     "eslint-config-airbnb": "^19.0.4",
     "eslint-config-prettier": "^8.1.0",
@@ -42,13 +38,14 @@
     "eslint-plugin-jsx-a11y": "^6.2.3",
     "eslint-plugin-prettier": "^4.0.0",
     "eslint-plugin-react": "^7.16.0",
-    "postcss": "^8.2.7",
+    "postcss": "^8.4.6",
     "postcss-preset-env": "^7.3.3",
     "prettier": "^2.0.5",
     "react-addons-test-utils": "^15.6.2",
     "tailwindcss": "^3.0.22",
     "tslint": "^6.1.2",
     "tslint-react": "^5.0.0",
-    "typescript": "^4.2.3"
+    "typescript": "^4.2.3",
+    "vite": "^2.8.0"
   }
 }

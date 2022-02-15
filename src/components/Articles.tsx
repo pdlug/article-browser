@@ -7,8 +7,8 @@ import { Article } from "../models";
 const { useEffect, useState } = React;
 
 async function loadData(): Promise<Article[]> {
-  const response = await axios.get("https://fake-article-api.now.sh/articles");
-  return response.data;
+  const { data } = await axios.get("https://fake-article-api.now.sh/articles");
+  return data;
 }
 
 const Articles = (): JSX.Element => {
