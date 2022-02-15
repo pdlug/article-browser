@@ -1,7 +1,7 @@
 export type Journal = {
   id: string;
   name: string;
-}
+};
 
 export type Article = {
   id: string;
@@ -10,4 +10,4 @@ export type Article = {
   abstract: string;
   journal: Journal;
   authors: string[];
-}
+};

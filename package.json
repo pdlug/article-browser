@@ -3,10 +3,10 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
-    "axios": "^0.21.1",
+    "axios": "^0.26.0",
     "react": "^17.0.1",
     "react-dom": "^17.0.1",
-    "react-scripts": "4.0.3"
+    "react-scripts": "5.0.0"
   },
   "scripts": {
     "lint": "eslint \"src/**/*.ts*\" && prettier \"src/**/*.ts*\" --list-different",
@@ -30,23 +30,23 @@
   ],
   "devDependencies": {
     "@testing-library/jest-dom": "^5.11.1",
-    "@testing-library/react": "^10.4.7",
+    "@testing-library/react": "^12.1.2",
     "@types/react": "^17.0.2",
     "@types/react-dom": "^17.0.1",
-    "@typescript-eslint/eslint-plugin-tslint": "^4.16.1",
+    "@typescript-eslint/eslint-plugin-tslint": "^5.12.0",
     "autoprefixer": "^10.2.5",
-    "eslint": "^7.21.0",
-    "eslint-config-airbnb": "^18.0.1",
+    "eslint": "^8.9.0",
+    "eslint-config-airbnb": "^19.0.4",
     "eslint-config-prettier": "^8.1.0",
     "eslint-plugin-import": "^2.18.2",
     "eslint-plugin-jsx-a11y": "^6.2.3",
-    "eslint-plugin-prettier": "^3.1.1",
+    "eslint-plugin-prettier": "^4.0.0",
     "eslint-plugin-react": "^7.16.0",
     "postcss": "^8.2.7",
-    "postcss-preset-env": "^6.7.0",
+    "postcss-preset-env": "^7.3.3",
     "prettier": "^2.0.5",
     "react-addons-test-utils": "^15.6.2",
-    "tailwindcss": "^2.0.3",
+    "tailwindcss": "^3.0.22",
     "tslint": "^6.1.2",
     "tslint-react": "^5.0.0",
     "typescript": "^4.2.3"
