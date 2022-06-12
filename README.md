@@ -45,7 +45,7 @@ Out of the box the application displays three articles on the page. This uses ha
 
 The fake article API provides 100 fake articles regenerated each time it's called. Each of these articles is in one of four fake journals ("Journal A", "Journal B", "Journal C", "Journal D").
 
-The API is available here: https://fake-article-api.now.sh/articles
+The API is available here: https://fake-article-api.vercel.app/articles
 
 Example of a single article:
 
@@ -83,13 +83,13 @@ Now that we have articles dynamically displaying we'd like to let the user filte
 **Example:** Return only articles in "Journal A":
 
 ```
-https://fake-article-api.now.sh/articles?journal=A
+https://fake-article-api.vercel.app/articles?journal=A
 ```
 
 **Example:** Return only articles in "Journal A" and "Journal B":
 
 ```
-https://fake-article-api.now.sh/articles?journal=A&journal=B
+https://fake-article-api.vercel.app/articles?journal=A&journal=B
 ```
 
 ### Task 4: Add search functionality
