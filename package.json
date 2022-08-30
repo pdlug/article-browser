@@ -46,6 +46,6 @@
     "tslint": "^6.1.2",
     "tslint-react": "^5.0.0",
     "typescript": "^4.2.3",
-    "vite": "^2.8.0"
+    "vite": "^2.9.13"
   }
 }
